@@ -65,13 +65,16 @@ html, body {
   }
 }
 
-/* الهيدر الفاخر */
+/* الهيدر الفاخر والتعديل الخاص باللوغو */
 .luxury-header {
   background: linear-gradient(180deg, #16161e 0%, var(--bg-main) 100%);
   padding: 22px 15px 15px 15px;
   text-align: center;
   border-bottom: 1px solid var(--border-gold);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .brand-sub {
@@ -79,12 +82,28 @@ html, body {
   font-size: 11px;
   letter-spacing: 4px;
   color: var(--gold-primary);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
+
+/* حاوية اللوغو وتأثير الخلفية الشفافة */
+.logo-wrapper {
+  margin: 5px auto 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-logo {
+  max-width: 110px;
+  height: auto;
+  filter: invert(1) grayscale(100%) brightness(200%); /* قلب الألوان لإخفاء الخلفية البيضاء وجعل الشعار يلمع باللون الأبيض أو الفضي */
+  mix-blend-mode: screen;
+}
+
 
 .brand-logo {
   font-family: 'Cinzel', serif;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   letter-spacing: 2px;
   background: var(--gold-gradient);
@@ -433,15 +452,15 @@ html, body {
 }
 
 .submit-btn:active {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
-/* فوتر الموقع */
+/* التذييل Footer */
 .luxury-footer {
   text-align: center;
   padding: 20px 15px;
-  border-top: 1px solid var(--border-gold);
-  background-color: #07070a;
-  color: var(--text-muted);
   font-size: 11px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-gold);
+  background-color: #070709;
 }
