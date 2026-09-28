@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>L'ÉLITE - متجر العطور الفاخرة</title>
+  <!-- خطوط عربية وفخمة من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- الشريط الإعلاني الأصفر المتحرك -->
+  <div class="announcement-bar">
+    <div class="ticker-track">
+      <span>المتجر قيد التجربة مزال سلعة مكايناش و شكرا</span>
+      <span>✦</span>
+      <span>💎 عطور زيتية فاخرة عالية الثبات والفوحان</span>
+      <span>✦</span>
+      <span>🚚 التوصيل مجاني عند طلب عطرين أو أكثر</span>
+      <span>✦</span>
+      <span>✨ التوصيل السريع لجميع المدن المغربية 🇲🇦</span>
+      <span>✦</span>
+      <span>💎 عطور زيتية فاخرة عالية الثبات والفوحان</span>
+      <span>✦</span>
+      <span>🚚 التوصيل مجاني عند طلب عطرين أو أكثر</span>
+      <span>✦</span>
+    </div>
+  </div>
+
+  <!-- هيدر فخم -->
+  <header class="luxury-header">
+    <div class="brand-sub">LUXURY PERFUMES</div>
+    <h1 class="brand-logo">Aura by Youssef</h1>
+    <p class="tagline">سحر العطور الملكية بين يديك</p>
+  </header>
+
+  <!-- بنر ترحيبي فخم -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <h2>تشكيلة العطور الملكية</h2>
+      <p>عطور زيتية فاخرة تدوم طويلاً بعَبَق مستوحى من أشهر الماركات العالمية</p>
+    </div>
+  </section>
+
+  <!-- القائمة الرئيسية: اختيار الجنس -->
+  <div class="main-gender-nav">
+    <button class="gender-btn active" onclick="setGender('men', event)">
+      <span class="btn-icon">♂</span> عطور رجالية
+    </button>
+    <button class="gender-btn" onclick="setGender('women', event)">
+      <span class="btn-icon">♀</span> عطور نسائية
+    </button>
+  </div>
+
+  <!-- القائمة الفرعية: الفصول -->
+  <div class="seasons-nav">
+    <button class="season-btn active" onclick="setSeason('all', event)">جميع الفصول</button>
+    <button class="season-btn" onclick="setSeason('winter', event)">❄️ شتوية</button>
+    <button class="season-btn" onclick="setSeason('summer', event)">☀️ صيفية</button>
+    <button class="season-btn" onclick="setSeason('autumn', event)">🍂 خريفية</button>
+    <button class="season-btn" onclick="setSeason('spring', event)">🌸 ربيعية</button>
+  </div>
+
+  <!-- شبكة المنتجات -->
+  <section class="products-container" id="productsGrid">
+
+    <!-- عطر 1: رجالي شتوي -->
+    <div class="product-card" data-category="men winter">
+      <div class="card-badge">الأكثر مبيعاً</div>
+      <div class="img-wrapper">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Sauvage">
+      </div>
+      <div class="card-details">
+        <span class="tag">Huile Parfumée Pure</span>
+        <h3>Type Sauvage</h3>
+        <p class="notes">نفحات خشبية مع لمسات من البرغموت الدافئ</p>
+        <div class="price-container">
+          <span class="price">100.00 <small>DH</small></span>
+        </div>
+        <button class="buy-btn" onclick="openModal('Type Sauvage', '100.00 DH')">
+          <span>اطلب الآن</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- عطر 2: رجالي صيفي -->
+    <div class="product-card" data-category="men summer">
+      <div class="card-badge">انتعاش ملكي</div>
+      <div class="img-wrapper">
+        <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Acqua Di Gio">
+      </div>
+      <div class="card-details">
+        <span class="tag">Huile Parfumée Pure</span>
+        <h3>Type Acqua Di Gio</h3>
+        <p class="notes">انتعاش البحر مع أريج حمضي ساحر</p>
+        <div class="price-container">
+          <span class="price">110.00 <small>DH</small></span>
+        </div>
+        <button class="buy-btn" onclick="openModal('Type Acqua Di Gio', '110.00 DH')">
+          <span>اطلب الآن</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- عطر 3: نسائي صيفي وربيعي -->
+    <div class="product-card" data-category="women summer spring">
+      <div class="card-badge">VIP</div>
+      <div class="img-wrapper">
+        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=500&q=80" alt="J'adore">
+      </div>
+      <div class="card-details">
+        <span class="tag">Huile Parfumée Pure</span>
+        <h3>Type J'adore</h3>
+        <p class="notes">باقة زهور فاخرة تمنحك حضوراً أسطورياً</p>
+        <div class="price-container">
+          <span class="price">100.00 <small>DH</small></span>
+        </div>
+        <button class="buy-btn" onclick="openModal('Type J\'adore', '100.00 DH')">
+          <span>اطلب الآن</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- عطر 4: نسائي شتوي وخريفي -->
+    <div class="product-card" data-category="women winter autumn">
+      <div class="card-badge">الأنوثة والحرية</div>
+      <div class="img-wrapper">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Libre">
+      </div>
+      <div class="card-details">
+        <span class="tag">Huile Parfumée Pure</span>
+        <h3>Type Libre</h3>
+        <p class="notes">مزيج دافئ من الخزامى وزهر البرتقال واللافندر</p>
+        <div class="price-container">
+          <span class="price">120.00 <small>DH</small></span>
+        </div>
+        <button class="buy-btn" onclick="openModal('Type Libre', '120.00 DH')">
+          <span>اطلب الآن</span>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- نافذة الطلب الفاخرة Modal -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <div class="modal-header">
+        <span class="crown-icon">👑</span>
+        <h3>تأكيد الطلب الملكي</h3>
+      </div>
+      <div id="modalPerfumeInfo" class="perfume-summary"></div>
+      
+      <form id="orderForm" onsubmit="sendOrder(event)">
+        <div class="input-group">
+          <label>الاسم الكامل</label>
+          <input type="text" id="clientName" placeholder="أدخل اسمك الكريم" required>
+        </div>
+
+        <div class="input-group">
+          <label>رقم الهاتف</label>
+          <input type="tel" id="clientPhone" placeholder="06XXXXXXXX" required>
+        </div>
+
+        <div class="input-group">
+          <label>المدينة</label>
+          <input type="text" id="clientCity" placeholder="أدخل مدينتك" required>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>تأكيد وإرسال عبر الواتساب</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer class="luxury-footer">
+    <p>©Aura by Youssef— جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
