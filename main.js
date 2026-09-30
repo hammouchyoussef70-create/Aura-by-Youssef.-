@@ -1,4 +1,4 @@
-const MY_PHONE_NUMBER = "212698734327"; 
+const my_phone_number = "212698734327"; 
 
 let selectedGender = 'men';      
 let selectedSeason = 'all';      
