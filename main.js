@@ -1,65 +1,128 @@
-// غير هذا الرقم إلى رقم هاتفك على الواتساب (مع الرمز الدولي للمغرب 212 بدون صفر وبدون علامة +)
 const MY_PHONE_NUMBER = "212698734327"; 
 
-let selectedGender = 'men';  // القسم الافتراضي (عطور رجالية)
-let selectedSeason = 'all';  // الفصل الافتراضي (جميع الفصول)
+let selectedGender = 'men';      
+let selectedSeason = 'all';      
+let selectedOccasion = 'all';    
 let selectedPerfume = '';
 let selectedPrice = '';
 
-// اختيار القسم (رجالية / نسائية)
-function setGender(gender, event) {
-  selectedGender = gender;
+// التحكم في القائمة الجانبية (Sidebar)
+window.toggleSidebar = function() {
+  const drawer = document.getElementById('sidebarDrawer');
+  const overlay = document.getElementById('sidebarOverlay');
   
+  if (drawer && overlay) {
+    const isActive = drawer.classList.contains('active');
+    if (isActive) {
+      window.closeSidebar();
+    } else {
+      drawer.classList.add('active');
+      overlay.style.display = 'block';
+      setTimeout(() => overlay.classList.add('active'), 10);
+    }
+  }
+};
+
+window.closeSidebar = function() {
+  const drawer = document.getElementById('sidebarDrawer');
+  const overlay = document.getElementById('sidebarOverlay');
+  
+  if (drawer) drawer.classList.remove('active');
+  if (overlay) {
+    overlay.classList.remove('active');
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 300);
+  }
+};
+
+// التصفية عبر التصنيفات من الجانب
+window.filterByOccasion = function(occasion) {
+  selectedOccasion = occasion;
+
+  const titleMap = {
+    'all': 'جميع العطور الملكية',
+    'everyday': 'عطور الاستعمال اليومي (EVERY DAY)',
+    'sexy': 'العطور الجذابة (SEXY)',
+    'gym': 'عطور الرياضة والانتعاش (GYM)',
+    'parties': 'عطور الحفلات والسهرات (PARTIES)',
+    'special': 'عطور المناسبات الخاصة (SPECIAL OCCASION)'
+  };
+
+  const activeTitle = document.getElementById('activeCategoryTitle');
+  if (activeTitle) {
+    activeTitle.innerText = titleMap[occasion] || 'تشكيلة العطور الملكية';
+  }
+
+  window.closeSidebar();
+  window.applyFilter();
+};
+
+// تصفية الجنس
+window.setGender = function(gender, event) {
+  selectedGender = gender;
   document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
-  event.currentTarget.classList.add('active');
+  if (event && event.currentTarget) {
+    event.currentTarget.classList.add('active');
+  }
+  window.applyFilter();
+};
 
-  applyFilter();
-}
-
-// اختيار الفصل (شتوية / صيفية / ...)
-function setSeason(season, event) {
+// تصفية الفصل
+window.setSeason = function(season, event) {
   selectedSeason = season;
-
   document.querySelectorAll('.season-btn').forEach(btn => btn.classList.remove('active'));
-  event.currentTarget.classList.add('active');
+  if (event && event.currentTarget) {
+    event.currentTarget.classList.add('active');
+  }
+  window.applyFilter();
+};
 
-  applyFilter();
-}
-
-// فلترة المنتجات بناءً على الجنس والفصل معاً
-function applyFilter() {
+// تطبيق التصفية
+window.applyFilter = function() {
   const cards = document.querySelectorAll('.product-card');
 
   cards.forEach(card => {
-    const categories = card.getAttribute('data-category'); // مثال: "men winter"
-    
-    const matchGender = categories.includes(selectedGender);
-    const matchSeason = (selectedSeason === 'all') || categories.includes(selectedSeason);
+    const genders = card.getAttribute('data-gender') || '';
+    const seasons = card.getAttribute('data-season') || '';
+    const occasion = card.getAttribute('data-occasion') || '';
 
-    if (matchGender && matchSeason) {
+    const matchGender = genders.includes(selectedGender);
+    const matchSeason = (selectedSeason === 'all') || seasons.includes(selectedSeason);
+    const matchOccasion = (selectedOccasion === 'all') || (occasion === selectedOccasion);
+
+    if (matchGender && matchSeason && matchOccasion) {
       card.style.display = 'flex';
     } else {
       card.style.display = 'none';
     }
   });
-}
+};
 
-// فتح نافذة إدخال بيانات الزبون
-function openModal(name, price) {
+// فتح وإغلاق نافذة الطلب
+window.openModal = function(name, price) {
   selectedPerfume = name;
   selectedPrice = price;
-  document.getElementById('modalPerfumeInfo').innerText = `✨ ${name} — ${price}`;
-  document.getElementById('orderModal').style.display = 'flex';
-}
+  const info = document.getElementById('modalPerfumeInfo');
+  if (info) {
+    info.innerText = `✨ ${name} — ${price}`;
+  }
+  const modal = document.getElementById('orderModal');
+  if (modal) {
+    modal.style.display = 'flex';
+  }
+};
 
-// إغلاق النافذة
-function closeModal() {
-  document.getElementById('orderModal').style.display = 'none';
-}
+window.closeModal = function() {
+  const modal = document.getElementById('orderModal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+};
 
-// إرسال تفاصيل الطلب مباشرة إلى الواتساب
-function sendOrder(event) {
-  event.preventDefault();
+// إرسال الطلب عبر الواتساب
+window.sendOrder = function(event) {
+  if (event) event.preventDefault();
 
   const name = document.getElementById('clientName').value;
   const phone = document.getElementById('clientPhone').value;
@@ -67,7 +130,7 @@ function sendOrder(event) {
 
   const text = `👑 *طلب جديد من المتجر الملكي* 👑%0A` +
                `-----------------------------------%0A` +
-               `✨ *العطر المطلوبة:* ${selectedPerfume}%0A` +
+               `✨ *العطر المطلوب:* ${selectedPerfume}%0A` +
                `💰 *الثمن:* ${selectedPrice}%0A` +
                `-----------------------------------%0A` +
                `👤 *اسم الزبون:* ${name}%0A` +
@@ -76,12 +139,10 @@ function sendOrder(event) {
                `-----------------------------------%0A` +
                `المرجو تأكيد الطلب والشحن وشكراً!`;
 
-  const whatsappURL = `https://wa.me/${MY_PHONE_NUMBER}?text=${text}`;
-  window.open(whatsappURL, '_blank');
-  closeModal();
-}
+  window.open(`https://wa.me/${MY_PHONE_NUMBER}?text=${text}`, '_blank');
+  window.closeModal();
+};
 
-// تشغيل الفلتر بمجرد تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
-  applyFilter();
+  window.applyFilter();
 });

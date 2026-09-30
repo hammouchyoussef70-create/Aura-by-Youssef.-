@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>L'ÉLITE - متجر العطور الفاخرة</title>
-  <!-- خطوط عربية وفخمة من Google Fonts -->
+  <title>AURA BY YOUSSEF - متجر العطور الفاخرة</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -23,28 +22,49 @@
       <span>✦</span>
       <span>✨ التوصيل السريع لجميع المدن المغربية 🇲🇦</span>
       <span>✦</span>
-      <span>💎 عطور زيتية فاخرة عالية الثبات والفوحان</span>
-      <span>✦</span>
-      <span>🚚 التوصيل مجاني عند طلب عطرين أو أكثر</span>
-      <span>✦</span>
     </div>
   </div>
 
-  <!-- هيدر فخم مع اللوغو -->
+  <!-- هيدر فخم مع زر القائمة المصحح -->
   <header class="luxury-header">
-    <div class="brand-sub">LUXURY PERFUMES</div>
-    <div class="logo-wrapper">
-      <img src="logo.png" alt="Aura by Youssef Logo" class="site-logo">
+    <button class="menu-toggle-btn" id="menuToggleBtn" onclick="toggleSidebar()" aria-label="القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="header-center">
+      <div class="brand-sub">LUXURY PERFUMES</div>
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Aura by Youssef Logo" class="site-logo">
+      </div>
+      <h1 class="brand-logo">AURA BY YOUSSEF</h1>
+      <p class="tagline">ااااخر مكاين ف روايح اللللخر</p>
     </div>
-    <h1 class="brand-logo">AURA BY YOUSSEF</h1>
-    <p class="tagline">ااااخر مكاين ف روايح اللللخر</p>
   </header>
 
-  <!-- بنر ترحيبي فخم -->
+  <!-- القائمة الجانبية (Sidebar Drawer) -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar-drawer" id="sidebarDrawer">
+    <div class="sidebar-header">
+      <h3>تصنيفات العطور</h3>
+      <button class="sidebar-close" onclick="closeSidebar()">&times;</button>
+    </div>
+    <ul class="sidebar-menu">
+      <li onclick="filterByOccasion('all')">✨ جميع العطور</li>
+      <li onclick="filterByOccasion('everyday')">☀️ EVERY DAY (يومي)</li>
+      <li onclick="filterByOccasion('sexy')">🔥 SEXY (جذاب)</li>
+      <li onclick="filterByOccasion('gym')">🏋️ GYM (رياضة)</li>
+      <li onclick="filterByOccasion('parties')">🎉 PARTIES (حفلات)</li>
+      <li onclick="filterByOccasion('special')">👑 SPECIAL OCCASION (مناسبات)</li>
+    </ul>
+  </aside>
+
+  <!-- بنر ترحيبي -->
   <section class="hero-banner">
     <div class="hero-content">
-      <h2>تشكيلة العطور الملكية</h2>
-      <p>عطور زيتية فاخرة تدوم طويلاً بعَبَق مستوحى من أشهر الماركات العالمية</p>
+      <h2 id="activeCategoryTitle">تشكيلة العطور الملكية</h2>
+      <p>اختر العطر المناسب لشخصيتك ومناسبتك بعَبَق مستوحى من الماركات العالمية</p>
     </div>
   </section>
 
@@ -67,88 +87,473 @@
     <button class="season-btn" onclick="setSeason('spring', event)">🌸 ربيعية</button>
   </div>
 
-  <!-- شبكة المنتجات -->
+  <!-- شبكة المنتجات (35 عطر) -->
   <section class="products-container" id="productsGrid">
 
-    <!-- عطر 1: رجالي شتوي -->
-    <div class="product-card" data-category="men winter">
-      <div class="card-badge">الأكثر مبيعاً</div>
-      <div class="img-wrapper">
-        <im src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Sauvage">
-      </div>
+    <!-- EVERY DAY -->
+    <div class="product-card" data-gender="men" data-season="summer spring" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="L'Immensité"></div>
       <div class="card-details">
-        <span class="tag">Huile Parfumée Pure</span>
-        <h3>test</h3>
-        <p class="notes">نفحات خشبية مع لمسات من البرغموت الدافئ</p>
-        <div class="price-container">
-          <span class="price">100.00 <small>DH</small></span>
-        </div>
-        <button class="buy-btn" onclick="openModal('Type Sauvage', '100.00 DH')">
-          <span>اطلب الآن</span>
-        </button>
+        <span class="tag">Louis Vuitton</span>
+        <h3>L'Immensité</h3>
+        <p class="notes">انتعاش زنجبيل والبرغموت مع لمسات عنبرية فاخرة</p>
+        <div class="price-container"><span class="price">120.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('LV L\'Immensité', '120.00 DH')"><span>اطلب الآن</span></button>
       </div>
     </div>
 
-    <!-- عطر 2: رجالي صيفي -->
-    <div class="product-card" data-category="men summer">
-      <div class="card-badge">انتعاش ملكي</div>
-      <div class="img-wrapper">
-        <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Acqua Di Gio">
-      </div>
+    <div class="product-card" data-gender="men" data-season="summer autumn spring winter" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Bleu De Chanel"></div>
       <div class="card-details">
-        <span class="tag">Huile Parfumée Pure</span>
-        <h3>test</h3>
-        <p class="notes">انتعاش البحر مع أريج حمضي ساحر</p>
-        <div class="price-container">
-          <span class="price">110.00 <small>DH</small></span>
-        </div>
-        <button class="buy-btn" onclick="openModal('Type Acqua Di Gio', '110.00 DH')">
-          <span>اطلب الآن</span>
-        </button>
+        <span class="tag">Chanel</span>
+        <h3>Bleu De Chanel</h3>
+        <p class="notes">حمضيات مع بخور وأخشاب الأرز الأسطورية</p>
+        <div class="price-container"><span class="price">120.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Bleu De Chanel', '120.00 DH')"><span>اطلب الآن</span></button>
       </div>
     </div>
 
-    <!-- عطر 3: نسائي صيفي وربيعي -->
-    <div class="product-card" data-category="women summer spring">
-      <div class="card-badge">VIP</div>
-      <div class="img-wrapper">
-        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=500&q=80" alt="J'adore">
-      </div>
+    <div class="product-card" data-gender="women men" data-season="summer spring" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=500&q=80" alt="Erba Pura"></div>
       <div class="card-details">
-        <span class="tag">Huile Parfumée Pure</span>
-        <h3>test</h3>
-        <p class="notes">باقة زهور فاخرة تمنحك حضوراً أسطورياً</p>
-        <div class="price-container">
-          <span class="price">100.00 <small>DH</small></span>
-        </div>
-        <button class="buy-btn" onclick="openModal('Type J\'adore', '100.00 DH')">
-          <span>اطلب الآن</span>
-        </button>
+        <span class="tag">Xerjoff</span>
+        <h3>Erba Pura</h3>
+        <p class="notes">فواكه استوائية منعشة مع مسك أبيض وفانيليا</p>
+        <div class="price-container"><span class="price">130.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Xerjoff Erba Pura', '130.00 DH')"><span>اطلب الآن</span></button>
       </div>
     </div>
 
-    <!-- عطر 4: نسائي شتوي وخريفي -->
-    <div class="product-card" data-category="women winter autumn">
-      <div class="card-badge">الأنوثة والحرية</div>
-      <div class="img-wrapper">
-        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Libre">
-      </div>
+    <div class="product-card" data-gender="men" data-season="summer autumn spring winter" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Y EDP"></div>
       <div class="card-details">
-        <span class="tag">Huile Parfumée Pure</span>
-        <h3>test</h3>
-        <p class="notes">مزيج دافئ من الخزامى وزهر البرتقال واللافندر</p>
-        <div class="price-container">
-          <span class="price">120.00 <small>DH</small></span>
-        </div>
-        <button class="buy-btn" onclick="openModal('Type Libre', '120.00 DH')">
-          <span>اطلب الآن</span>
-        </button>
+        <span class="tag">YSL</span>
+        <h3>Y EDP</h3>
+        <p class="notes">تفاح أخضر مع الميرمية وأخشاب العنبر</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('YSL Y EDP', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer spring" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Sedley"></div>
+      <div class="card-details">
+        <span class="tag">Parfums De Marly</span>
+        <h3>Sedley</h3>
+        <p class="notes">نعناع وحمضيات مع لمسات خشبية خفيفة</p>
+        <div class="price-container"><span class="price">130.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('PDM Sedley', '130.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="autumn spring" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Bleu Noir"></div>
+      <div class="card-details">
+        <span class="tag">Narciso Rodriguez</span>
+        <h3>Bleu Noir</h3>
+        <p class="notes">مسك وأخشاب الأبنوس والأرز الدافئة</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Narciso Bleu Noir', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer autumn spring" data-occasion="everyday">
+      <div class="card-badge">EVERY DAY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Explorer"></div>
+      <div class="card-details">
+        <span class="tag">Montblanc</span>
+        <h3>Explorer</h3>
+        <p class="notes">برغموت إيطالي مع نجيل الهند والجلد</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Montblanc Explorer', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <!-- SEXY -->
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Gentleman Reserve"></div>
+      <div class="card-details">
+        <span class="tag">Givenchy</span>
+        <h3>Gentleman Reserve Privée</h3>
+        <p class="notes">زهور السوسن الفاخرة مع أخشاب الويسكي العميقة</p>
+        <div class="price-container"><span class="price">130.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Givenchy Reserve Privee', '130.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Noir Extreme"></div>
+      <div class="card-details">
+        <span class="tag">Tom Ford</span>
+        <h3>Noir Extreme</h3>
+        <p class="notes">كولفي هندي دافئ مع حبهان وفانيليا ساحرة</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Tom Ford Noir Extreme', '140.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Le Male Le Parfum"></div>
+      <div class="card-details">
+        <span class="tag">Jean Paul Gaultier</span>
+        <h3>Le Male Le Parfum</h3>
+        <p class="notes">هيل دافئ مع خزامى وفانيليا مكثفة</p>
+        <div class="price-container"><span class="price">120.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('JPG Le Male Le Parfum', '120.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn spring" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Layton"></div>
+      <div class="card-details">
+        <span class="tag">Parfums De Marly</span>
+        <h3>Layton</h3>
+        <p class="notes">تفاح وفانيليا مع تفاصيل حارّة جذابة جداً</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('PDM Layton', '140.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="winter autumn" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=500&q=80" alt="Oud Satin Mood"></div>
+      <div class="card-details">
+        <span class="tag">Maison Francis Kurkdjian</span>
+        <h3>Oud Satin Mood</h3>
+        <p class="notes">عود طبيعي مع ورد تركي وفانيليا مخملية</p>
+        <div class="price-container"><span class="price">150.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Oud Satin Mood', '150.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="autumn spring" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="La Nuit De L'Homme"></div>
+      <div class="card-details">
+        <span class="tag">YSL</span>
+        <h3>La Nuit De L'Homme</h3>
+        <p class="notes">حبهان وأخشاب الأرز وخزامى آسر</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('YSL La Nuit De L\'Homme', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Herod"></div>
+      <div class="card-details">
+        <span class="tag">Parfums De Marly</span>
+        <h3>Herod</h3>
+        <p class="notes">تبغ فاخر وقرفة وفانيليا دافئة</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('PDM Herod', '140.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="sexy">
+      <div class="card-badge">SEXY</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Eros Flame"></div>
+      <div class="card-details">
+        <span class="tag">Versace</span>
+        <h3>Eros Flame</h3>
+        <p class="notes">ليمون إيطالي مع فلفل أسود وخشب الصندل</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Versace Eros Flame', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <!-- GYM -->
+    <div class="product-card" data-gender="men" data-season="summer" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Cool Water"></div>
+      <div class="card-details">
+        <span class="tag">Davidoff</span>
+        <h3>Cool Water EDT</h3>
+        <p class="notes">انتعاش بحري قوي مع نعناع وخزامى</p>
+        <div class="price-container"><span class="price">90.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Davidoff Cool Water', '90.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Voyage"></div>
+      <div class="card-details">
+        <span class="tag">Nautica</span>
+        <h3>Voyage</h3>
+        <p class="notes">تفاح أخضر مع تفاصيل أوراق خضراء منعشة</p>
+        <div class="price-container"><span class="price">90.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Nautica Voyage', '90.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Ultra Blue"></div>
+      <div class="card-details">
+        <span class="tag">Montblanc</span>
+        <h3>Ultra Blue</h3>
+        <p class="notes">حمضيات استوائية وعناصر بحرية خفيفة</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Montblanc Ultra Blue', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer spring" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Acqua Di Gio"></div>
+      <div class="card-details">
+        <span class="tag">Armani</span>
+        <h3>Acqua Di Gio Parfum</h3>
+        <p class="notes">بحر مع ميرمية وبخور نقي عالي الثبات</p>
+        <div class="price-container"><span class="price">120.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Acqua Di Gio Parfum', '120.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Wave"></div>
+      <div class="card-details">
+        <span class="tag">Missoni</span>
+        <h3>Wave</h3>
+        <p class="notes">انتعاش حمضيات البحر الأبيض المتوسط</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Missoni Wave', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer spring" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Legend Spirit"></div>
+      <div class="card-details">
+        <span class="tag">Montblanc</span>
+        <h3>Legend Spirit</h3>
+        <p class="notes">جريب فروت مع حمضيات وأخشاب بيضاء</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Montblanc Legend Spirit', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="summer" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Afternoon Swim"></div>
+      <div class="card-details">
+        <span class="tag">Louis Vuitton</span>
+        <h3>Afternoon Swim</h3>
+        <p class="notes">انفجار ماندرين وبرتقال مع برغموت منعش</p>
+        <div class="price-container"><span class="price">130.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('LV Afternoon Swim', '130.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer autumn spring" data-occasion="gym">
+      <div class="card-badge">GYM</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Creed Aventus"></div>
+      <div class="card-details">
+        <span class="tag">Creed</span>
+        <h3>Aventus</h3>
+        <p class="notes">أناناس مدخن مع أخشاب الأبل والأرز</p>
+        <div class="price-container"><span class="price">150.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Creed Aventus', '150.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <!-- PARTIES -->
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="9 PM"></div>
+      <div class="card-details">
+        <span class="tag">Afnan</span>
+        <h3>9 PM</h3>
+        <p class="notes">تفاح وفانيليا مع تفاصيل دافئة للسهرات والحفلات</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Afnan 9 PM', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="La Nuit Le Parfum"></div>
+      <div class="card-details">
+        <span class="tag">YSL</span>
+        <h3>La Nuit Le Parfum</h3>
+        <p class="notes">فلفل أسود وفانيليا مع أخشاب دافئة وقوية</p>
+        <div class="price-container"><span class="price">120.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('YSL La Nuit Le Parfum', '120.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="autumn spring winter" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Armani Code"></div>
+      <div class="card-details">
+        <span class="tag">Armani</span>
+        <h3>Code Parfum</h3>
+        <p class="notes">سوسن مع سيتلاس وتونكا فاخرة جداً</p>
+        <div class="price-container"><span class="price">120.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Armani Code Parfum', '120.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer autumn spring" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Dylan Blue"></div>
+      <div class="card-details">
+        <span class="tag">Versace</span>
+        <h3>Dylan Blue</h3>
+        <p class="notes">برغموت مع بخور وفلفل أسود جذاب</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Versace Dylan Blue', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="winter autumn" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Ombre Leather"></div>
+      <div class="card-details">
+        <span class="tag">Tom Ford</span>
+        <h3>Ombré Leather</h3>
+        <p class="notes">جلد فاخر مع هيل وياقوت أسود مذهل</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Tom Ford Ombre Leather', '140.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Spicebomb Extreme"></div>
+      <div class="card-details">
+        <span class="tag">Viktor&Rolf</span>
+        <h3>Spicebomb Extreme</h3>
+        <p class="notes">تبغ وقرفة وفانيليا دافئة ثقيلة الفوحان</p>
+        <div class="price-container"><span class="price">130.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Spicebomb Extreme', '130.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="summer autumn spring" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&q=80" alt="Club De Nuit"></div>
+      <div class="card-details">
+        <span class="tag">Armaf</span>
+        <h3>Club De Nuit Intense</h3>
+        <p class="notes">ليمون وأناناس مدخن بفوحان أسطوري</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Club De Nuit Intense', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="winter autumn" data-occasion="parties">
+      <div class="card-badge">PARTIES</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Carlisle"></div>
+      <div class="card-details">
+        <span class="tag">Parfums De Marly</span>
+        <h3>Carlisle</h3>
+        <p class="notes">تفاح وجوزة الطيب مع تفاصيل تفاح وفانيليا</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('PDM Carlisle', '140.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <!-- SPECIAL OCCASION -->
+    <div class="product-card" data-gender="men" data-season="summer spring" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=500&q=80" alt="Wall Street"></div>
+      <div class="card-details">
+        <span class="tag">Bond No. 9</span>
+        <h3>Wall Street</h3>
+        <p class="notes">خيار وبحر مع لمسات جلود نادرة</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Bond No. 9 Wall Street', '140.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Clive Christian X"></div>
+      <div class="card-details">
+        <span class="tag">Clive Christian</span>
+        <h3>X For Men</h3>
+        <p class="notes">حبهان وأخشاب الأرز والقرفة الملكية</p>
+        <div class="price-container"><span class="price">160.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Clive Christian X', '160.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Halloween Man X"></div>
+      <div class="card-details">
+        <span class="tag">Halloween</span>
+        <h3>Halloween Man X</h3>
+        <p class="notes">قهوة وويسكي مع هيل ودخان جذاب</p>
+        <div class="price-container"><span class="price">100.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Halloween Man X', '100.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="men" data-season="winter autumn" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Bentley Intense"></div>
+      <div class="card-details">
+        <span class="tag">Bentley</span>
+        <h3>For Men Intense</h3>
+        <p class="notes">بخور ورم وجلود دافئة للرجال الفخام</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Bentley For Men Intense', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="winter autumn" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=500&q=80" alt="Khamrah"></div>
+      <div class="card-details">
+        <span class="tag">Lattafa</span>
+        <h3>Khamrah</h3>
+        <p class="notes">قرفة وتمر وفانيليا مع تمر هندي فاخر</p>
+        <div class="price-container"><span class="price">110.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Lattafa Khamrah', '110.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="winter autumn" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Royal Oud"></div>
+      <div class="card-details">
+        <span class="tag">Creed</span>
+        <h3>Royal Oud</h3>
+        <p class="notes">عود ملكي نقي مع خشب الصندل والفلفل الوردي</p>
+        <div class="price-container"><span class="price">160.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Creed Royal Oud', '160.00 DH')"><span>اطلب الآن</span></button>
+      </div>
+    </div>
+
+    <div class="product-card" data-gender="women men" data-season="winter autumn" data-occasion="special">
+      <div class="card-badge">SPECIAL OCCASION</div>
+      <div class="img-wrapper"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=500&q=80" alt="Red Tobacco"></div>
+      <div class="card-details">
+        <span class="tag">Mancera</span>
+        <h3>Red Tobacco</h3>
+        <p class="notes">تبغ أحمر وقرفة وفانيليا بفوحان يملأ المكان</p>
+        <div class="price-container"><span class="price">140.00 <small>DH</small></span></div>
+        <button class="buy-btn" onclick="openModal('Mancera Red Tobacco', '140.00 DH')"><span>اطلب الآن</span></button>
       </div>
     </div>
 
   </section>
 
-  <!-- نافذة الطلب الفاخرة Modal -->
+  <!-- نافذة الطلب Modal -->
   <div id="orderModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
