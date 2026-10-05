@@ -1,3 +1,4 @@
+// الرقم الخاص بك بدون رمز + وبدون مسافات
 const MY_PHONE_NUMBER = "212698734327"; 
 
 let selectedGender = 'men';      
@@ -128,18 +129,25 @@ window.sendOrder = function(event) {
   const phone = document.getElementById('clientPhone').value;
   const city = document.getElementById('clientCity').value;
 
-  const text = `👑 *طلب جديد من المتجر الملكي* 👑%0A` +
-               `-----------------------------------%0A` +
-               `✨ *العطر المطلوب:* ${selectedPerfume}%0A` +
-               `💰 *الثمن:* ${selectedPrice}%0A` +
-               `-----------------------------------%0A` +
-               `👤 *اسم الزبون:* ${name}%0A` +
-               `📞 *رقم الهاتف:* ${phone}%0A` +
-               `🏙️ *المدينة:* ${city}%0A` +
-               `-----------------------------------%0A` +
-               `المرجو تأكيد الطلب والشحن وشكراً!`;
+  // صياغة نص الرسالة
+  const textMessage = `👑 *طلب جديد من المتجر الملكي* 👑\n` +
+                      `-----------------------------------\n` +
+                      `✨ *العطر المطلوب:* ${selectedPerfume}\n` +
+                      `💰 *الثمن:* ${selectedPrice}\n` +
+                      `-----------------------------------\n` +
+                      `👤 *اسم الزبون:* ${name}\n` +
+                      `📞 *رقم الهاتف:* ${phone}\n` +
+                      `🏙️ *المدينة:* ${city}\n` +
+                      `-----------------------------------\n` +
+                      `المرجو تأكيد الطلب والشحن وشكراً!`;
 
-  window.open(`https://wa.me/${MY_PHONE_NUMBER}?text=${text}`, '_blank');
+  // تشفير النص لضمان توافقه مع الروابط والعربية
+  const encodedText = encodeURIComponent(textMessage);
+
+  // رابط الواتساب الصحيح المباشر
+  const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${encodedText}`;
+
+  window.open(whatsappUrl, '_blank');
   window.closeModal();
 };
 
