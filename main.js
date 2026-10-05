@@ -88,7 +88,8 @@ window.applyFilter = function() {
     const seasons = card.getAttribute('data-season') || '';
     const occasion = card.getAttribute('data-occasion') || '';
 
-    const matchGender = genders.includes(selectedGender);
+    // إمكانية دعم خيار 'all' للجنس أيضاً إذا احتجته
+    const matchGender = (selectedGender === 'all') || genders.includes(selectedGender);
     const matchSeason = (selectedSeason === 'all') || seasons.includes(selectedSeason);
     const matchOccasion = (selectedOccasion === 'all') || (occasion === selectedOccasion);
 
@@ -125,9 +126,19 @@ window.closeModal = function() {
 window.sendOrder = function(event) {
   if (event) event.preventDefault();
 
-  const name = document.getElementById('clientName').value;
-  const phone = document.getElementById('clientPhone').value;
-  const city = document.getElementById('clientCity').value;
+  const nameInput = document.getElementById('clientName');
+  const phoneInput = document.getElementById('clientPhone');
+  const cityInput = document.getElementById('clientCity');
+
+  const name = nameInput ? nameInput.value.trim() : '';
+  const phone = phoneInput ? phoneInput.value.trim() : '';
+  const city = cityInput ? cityInput.value.trim() : '';
+
+  // التحقق من ملء البيانات
+  if (!name || !phone || !city) {
+    alert('المرجو كتابة الاسم، رقم الهاتف والمدينة لتأكيد الطلب!');
+    return;
+  }
 
   // صياغة نص الرسالة
   const textMessage = `👑 *طلب جديد من المتجر الملكي* 👑\n` +
@@ -144,10 +155,11 @@ window.sendOrder = function(event) {
   // تشفير النص لضمان توافقه مع الروابط والعربية
   const encodedText = encodeURIComponent(textMessage);
 
-  // رابط الواتساب الصحيح المباشر
+  // رابط الواتساب المباشر
   const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${encodedText}`;
 
-  window.open(whatsappUrl, '_blank');
+  // فتح الواتساب بشكل أضمن للهواتف
+  window.location.href = whatsappUrl;
   window.closeModal();
 };
 
