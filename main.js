@@ -1,3 +1,4 @@
+// Aura by Youssef - Main JS (v2.0)
 // الرقم الخاص بك بدون رمز + وبدون مسافات
 const MY_PHONE_NUMBER = "212698734327"; 
 
