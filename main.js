@@ -1,4 +1,4 @@
-// Aura by Youssef - Main JS (v2.0)
+// Aura by Youssef - Main JS (v2.1)
 // الرقم الخاص بك بدون رمز + وبدون مسافات
 const MY_PHONE_NUMBER = "212698734327"; 
 
@@ -89,7 +89,6 @@ window.applyFilter = function() {
     const seasons = card.getAttribute('data-season') || '';
     const occasion = card.getAttribute('data-occasion') || '';
 
-    // إمكانية دعم خيار 'all' للجنس أيضاً إذا احتجته
     const matchGender = (selectedGender === 'all') || genders.includes(selectedGender);
     const matchSeason = (selectedSeason === 'all') || seasons.includes(selectedSeason);
     const matchOccasion = (selectedOccasion === 'all') || (occasion === selectedOccasion);
@@ -156,11 +155,11 @@ window.sendOrder = function(event) {
   // تشفير النص لضمان توافقه مع الروابط والعربية
   const encodedText = encodeURIComponent(textMessage);
 
-  // رابط الواتساب المباشر
-  const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${encodedText}`;
+  // رابط الواتساب المباشر والتوافق الأفضل
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${MY_PHONE_NUMBER}&text=${encodedText}`;
 
-  // فتح الواتساب بشكل أضمن للهواتف
-  window.location.href = whatsappUrl;
+  // فتح الواتساب في نافذة جديدة
+  window.open(whatsappUrl, '_blank');
   window.closeModal();
 };
 
